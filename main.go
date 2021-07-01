@@ -59,6 +59,7 @@ type discordOut struct {
 type discordEmbed struct {
 	Title       string              `json:"title"`
 	Description string              `json:"description"`
+	URL         string              `json:"url"`
 	Color       int                 `json:"color"`
 	Fields      []discordEmbedField `json:"fields"`
 }
@@ -103,6 +104,7 @@ func sendWebhook(amo *alertManOut) {
 		RichEmbed := discordEmbed{
 			Title:       fmt.Sprintf("[%s:%d] %s", strings.ToUpper(status), len(alerts), amo.CommonLabels.Alertname),
 			Description: amo.CommonAnnotations.Summary,
+			URL:         amo.ExternalURL,
 			Color:       ColorGrey,
 			Fields:      []discordEmbedField{},
 		}
